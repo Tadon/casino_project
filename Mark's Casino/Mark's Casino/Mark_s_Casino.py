@@ -1,5 +1,6 @@
 balance = int(input("Initial deposit amount: $"))
-
+import random
+#test changes
 
 #  Defined Functions  # 
 def open_print_menu():
