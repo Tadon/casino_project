@@ -1,6 +1,6 @@
 balance = int(input("Initial deposit amount: $"))
 import random
-#test changes
+
 
 #  Defined Functions  # 
 def open_print_menu():
@@ -8,9 +8,10 @@ def open_print_menu():
     print("Welcome to Mark's casino! Please select from the following:")
     print("1: Play Slots")
     print("2: Play Craps")
-    print("3: Deposit more funds")
-    print("4: Withdraw funds")
-    print("5: Exit")
+    print("3: Play Blackjack")
+    print("4: Deposit more funds")
+    print("5: Withdraw funds")
+    print("6: Exit")
     menuSelection = int(input("Make your selection here: "))
     return menuSelection
 def play_game_slots(balance):
@@ -157,7 +158,23 @@ def pay_game_craps(balance, wagerAmt,dice1, dice2):
         print("Error!")
     balance = round(balance, 2) + round(winnings, 2)
     return winnings, balance
-        
+#Blackjack
+def play_game_blackjack(balance):
+    while True: 
+        exit_game = False
+        if balance <= 0:
+            print("Insufficient funds! Please deposit more funds.")
+            break
+        print("Welcome to Mark's Blackjack! Blackjack pays 3 to 2. Please select from the following menu")
+        print("1: Play Blackjack!")
+        print("2: Deposit funds.")
+        uSelection = int(input("3: Exit."))
+        if uSelection == 2:
+            balance = perform_deposit_funds(balance)
+        elif uSelection == 3:
+            return balance
+        elif uSelection == 1:
+            wagerAmt = int(input("Welcome to Blackjack! How much would you like to wager?"))
 
 
 #Makes sure your initial balance is greater than zero before it allows you to open the casino.
@@ -173,20 +190,25 @@ while True:
     if menuSelection == 1:
         balance = play_game_slots(balance)
         continue
+#Selection 2 - Craps
     elif menuSelection == 2:
         balance = play_game_craps(balance)
-
-#Selection = 2, depositing more funds
+        continue
+#Selection 3 - Blackjack
     elif menuSelection == 3:
+        balance = play_game_blackjack(balance)
+        continue    
+#Selection 4 -  depositing more funds
+    elif menuSelection == 4:
         balance = perform_deposit_funds(balance)
         continue
  
-#Selection 3 = withdrawing funds
-    elif menuSelection == 4:
+#Selection 5 - withdrawing funds
+    elif menuSelection == 5:
         balance = perform_withdraw_funds(balance)
         continue
     
-#Exiting the program!
+#Selection 6 - Exiting program
     else:
         break
 
