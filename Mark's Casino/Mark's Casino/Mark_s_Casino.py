@@ -173,8 +173,15 @@ def play_game_blackjack(balance):
             balance = perform_deposit_funds(balance)
         elif uSelection == 3:
             return balance
-        elif uSelection == 1:
+        elif uSelection == 1 and not exit_game:
             wagerAmt = int(input("Welcome to Blackjack! How much would you like to wager?"))
+            while wagerAmt == 0 or wagerAmt < balance:
+                uuSelection = str(input("Incorrect value. Please wager greater than 0 and no more than your total balance. Press 1 to exit or any other button to return to the previous menu"))
+                if uuSelection == '1':
+                    return balance
+                else:
+                    break
+
 
 
 #Makes sure your initial balance is greater than zero before it allows you to open the casino.
