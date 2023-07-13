@@ -185,7 +185,14 @@ def play_game_blackjack(balance):
                     return balance
                 else:
                     break
-
+            
+def card_generator():
+    values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+    suits = ['♠', '♡', '♢', '♣']
+    value = random.choice(values)
+    suit = random.choice(suits)
+    card = (value, suit)
+    return card
 
 
 #Makes sure your initial balance is greater than zero before it allows you to open the casino.
