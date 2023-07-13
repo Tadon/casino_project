@@ -1,6 +1,6 @@
 balance = int(input("Initial deposit amount: $"))
 import random
-
+import time
 
 #  Defined Functions  # 
 def open_print_menu():
@@ -28,7 +28,11 @@ def play_game_slots(balance):
             reel2 = random.randint(1,7)
             reel3 = random.randint(1,7)
             print("#######################################")
-            print(reel1, reel2, reel3)
+            print(reel1, end = "", flush = True)
+            time.sleep(0.5)
+            print(reel2, end = "", flush = True)
+            time.sleep(0.5)
+            print(reel3)
             print("#######################################")
             if(reel1 == reel2) and (reel2 == reel3):
                 print("WINNER! You've just won 100x your wager!")
