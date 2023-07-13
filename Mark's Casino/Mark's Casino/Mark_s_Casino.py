@@ -172,28 +172,74 @@ def play_game_blackjack(balance):
         print("Welcome to Mark's Blackjack! Blackjack pays 3 to 2. Please select from the following menu")
         print("1: Play Blackjack!")
         print("2: Deposit funds.")
-        uSelection = int(input("3: Exit."))
+        print("3: Exit.")
+        uSelection = int(input(""))
         if uSelection == 2:
             balance = perform_deposit_funds(balance)
         elif uSelection == 3:
             return balance
         elif uSelection == 1 and not exit_game:
             wagerAmt = int(input("Welcome to Blackjack! How much would you like to wager?"))
-            while wagerAmt == 0 or wagerAmt < balance:
+            while wagerAmt == 0 or wagerAmt > balance:
                 uuSelection = str(input("Incorrect value. Please wager greater than 0 and no more than your total balance. Press 1 to exit or any other button to return to the previous menu"))
                 if uuSelection == '1':
                     return balance
                 else:
                     break
             
+            players_hand = card_generator()
+            dealers_hand = card_generator()
+            players_hand = [players_hand, card_generator()]
+            time.sleep(1)
+            print(f"Dealers showcard is is {dealers_hand}")
+            time.sleep(1)
+            print(f"Players hand is {players_hand[0]}", end = "", flush = True)
+            time.sleep(1)
+            print(f"{players_hand[1]}")
+            print("What would you like to do?")
+            uuSelection = int(input("1: Hit 2: Stand"))
+            while uuSelection == 1:
+                players_hand.append(card_generator())
+                print(players_hand)
+                uuSelection = int(input("1: Hit 2: Stand"))
 def card_generator():
     values = ['2','3','4','5','6','7','8','9','10','J','Q','K','A']
     suits = ['♠', '♡', '♢', '♣']
     value = random.choice(values)
     suit = random.choice(suits)
-    card = (value, suit)
+    card = [value, suit]
     return card
-
+def hand_value_calculator(value):
+    value = 0
+    if "2" in value:
+        value += 2
+    if "3" in value:
+        value += 3
+    if "4" in value:
+        value += 4
+    if "5" in value:
+        value += 5
+    if "6" in value:
+        value += 6
+    if "7" in value:
+        value += 7
+    if "8" in value:
+        value += 8
+    if "9" in value:
+        value += 9
+    if "10" in value:
+        value += 10
+    if "J" in value:
+        value += 10
+    if "Q" in value:
+        value += 10
+    if "K" in value:
+        value += 10
+    if ("A" in value and value + 11 < 22):
+        value += 11
+    if ("A" in value and value + 11 > 22):
+        value += 1
+    return value
 
 #Makes sure your initial balance is greater than zero before it allows you to open the casino.
 while balance <= 0:
