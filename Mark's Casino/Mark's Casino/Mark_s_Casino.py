@@ -209,37 +209,6 @@ def card_generator():
     suit = random.choice(suits)
     card = [value, suit]
     return card
-def hand_value_calculator(value):
-    value = 0
-    if "2" in value:
-        value += 2
-    if "3" in value:
-        value += 3
-    if "4" in value:
-        value += 4
-    if "5" in value:
-        value += 5
-    if "6" in value:
-        value += 6
-    if "7" in value:
-        value += 7
-    if "8" in value:
-        value += 8
-    if "9" in value:
-        value += 9
-    if "10" in value:
-        value += 10
-    if "J" in value:
-        value += 10
-    if "Q" in value:
-        value += 10
-    if "K" in value:
-        value += 10
-    if ("A" in value and value + 11 < 22):
-        value += 11
-    if ("A" in value and value + 11 > 22):
-        value += 1
-    return value
 
 #Makes sure your initial balance is greater than zero before it allows you to open the casino.
 while balance <= 0:
